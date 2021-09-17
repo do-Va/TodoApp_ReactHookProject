@@ -4,6 +4,7 @@ import TodoForm from './TodoForm';
 
 /* Material-ui */
 import { Typography, Paper, AppBar, Toolbar, Grid } from '@material-ui/core';
+const { v4: uuidv4 } = require('uuid');
 
 function TodoApp() {
   const initialTodos = [
@@ -13,8 +14,24 @@ function TodoApp() {
   ];
 
   const [todos, setTodos] = useState(initialTodos);
+
   const addTodo = newTodoText => {
-    setTodos([...todos, { id: 4, task: newTodoText, completed: false }]);
+    setTodos([...todos, { id: uuidv4(), task: newTodoText, completed: false }]);
+  };
+
+  const removeTodo = todoId => {
+    // filter out removed todo
+    const newTodos = todos.filter(todo => todo.id !== todoId);
+
+    // call setTodos with new todos array
+    setTodos(newTodos);
+  };
+
+  const toggleTodo = todoId => {
+    const newTodos = todos.map(todo =>
+      todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+    );
+    setTodos(newTodos);
   };
 
   return (
@@ -34,7 +51,11 @@ function TodoApp() {
       <Grid container justifyContent="center" style={{ marginTop: '1rem' }}>
         <Grid item xs={11} md={8} lg={4}>
           <TodoForm addTodo={addTodo} />
-          <TodoList todos={todos} />
+          <TodoList
+            todos={todos}
+            removeTodo={removeTodo}
+            toggleTodo={toggleTodo}
+          />
         </Grid>
       </Grid>
     </Paper>

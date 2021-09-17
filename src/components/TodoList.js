@@ -4,13 +4,13 @@ import Todo from './Todo';
 /* Material-ui */
 import { Divider, Paper, List } from '@material-ui/core';
 
-function TodoList(props) {
+function TodoList({ todos, removeTodo, toggleTodo }) {
   return (
     <Paper>
       <List>
-        {props.todos.map(todo => (
+        {todos.map(todo => (
           <React.Fragment key={todo.id}>
-            <Todo {...todo} />
+            <Todo {...todo} removeTodo={removeTodo} toggleTodo={toggleTodo} />
             <Divider />
           </React.Fragment>
         ))}
