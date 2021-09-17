@@ -1,20 +1,39 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 import useTodoState from '../hooks/useTodoState';
 
 /* Material-ui */
-import { Typography, Paper, AppBar, Toolbar, Grid } from '@material-ui/core';
+import {
+  Typography,
+  Paper,
+  AppBar,
+  Toolbar,
+  Grid,
+  Button,
+} from '@material-ui/core';
 
 function TodoApp() {
-  const initialTodos = JSON.parse(window.localStorage.getItem('todos')) || [];
+  const initialTodos = [{ id: 1, task: 'Example Todo', completed: true }];
 
   const { todos, addTodo, editTodo, removeTodo, toggleTodo } =
     useTodoState(initialTodos);
 
-  useEffect(() => {
-    window.localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
+  const toolbarStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+  };
+
+  const buttonStyle = {
+    background: '#fff',
+    textTransform: 'none',
+    fontSize: '.7rem',
+  };
+
+  const clearLocalStorage = location => {
+    window.localStorage.clear();
+    window.location.reload();
+  };
 
   return (
     <Paper
@@ -26,8 +45,11 @@ function TodoApp() {
       }}
     >
       <AppBar color="primary" position="static" style={{ height: '64px' }}>
-        <Toolbar>
+        <Toolbar style={toolbarStyle}>
           <Typography color="inherit">TODOS WITH HOOKS</Typography>
+          <Button style={buttonStyle} onClick={clearLocalStorage}>
+            Clear LocalStorage
+          </Button>
         </Toolbar>
       </AppBar>
       <Grid container justifyContent="center" style={{ marginTop: '1rem' }}>
