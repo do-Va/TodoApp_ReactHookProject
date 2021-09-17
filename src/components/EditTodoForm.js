@@ -1,8 +1,7 @@
 import React from 'react';
 import useInputState from '../hooks/useInputState';
 
-import { Paper, TextField } from '@material-ui/core';
-import { ToggleOnTwoTone } from '@material-ui/icons';
+import { TextField } from '@material-ui/core';
 
 function EditTodoForm({ id, task, editTodo, toggleEditForm }) {
   const [value, handleChange, reset] = useInputState(task);
