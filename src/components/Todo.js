@@ -11,6 +11,7 @@ import {
   ListItemSecondaryAction,
 } from '@material-ui/core';
 import { Delete, Edit } from '@material-ui/icons';
+import '../Todo.css';
 
 function Todo({ id, task, completed, editTodo, removeTodo, toggleTodo }) {
   const [isEditing, toggle] = useToggleState(false);
@@ -24,7 +25,7 @@ function Todo({ id, task, completed, editTodo, removeTodo, toggleTodo }) {
   };
 
   return (
-    <ListItem style={{ height: '64px' }}>
+    <ListItem>
       {isEditing ? (
         <EditTodoForm
           editTodo={editTodo}
@@ -35,11 +36,8 @@ function Todo({ id, task, completed, editTodo, removeTodo, toggleTodo }) {
       ) : (
         <React.Fragment>
           <Checkbox tabIndex={-1} checked={completed} onClick={handleClick} />
-          <ListItemText
-            style={{
-              textDecoration: completed ? 'line-through' : 'none',
-            }}
-          >
+          <ListItemText>
+            <div className={completed ? 'box active' : 'box'}></div>
             {task}
           </ListItemText>
           <ListItemSecondaryAction>

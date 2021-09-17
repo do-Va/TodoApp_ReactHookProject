@@ -30,20 +30,20 @@ function TodoApp() {
     fontSize: '.7rem',
   };
 
+  const paperStyle = {
+    padding: 0,
+    margin: 0,
+    height: '100vh',
+    background: 'linear-gradient(to right, #7BC6CC, #BE93C5)',
+  };
+
   const clearLocalStorage = location => {
     window.localStorage.clear();
     window.location.reload();
   };
 
   return (
-    <Paper
-      style={{
-        padding: 0,
-        margin: 0,
-        height: '100vh',
-        background: '#fafafa',
-      }}
-    >
+    <Paper style={paperStyle}>
       <AppBar color="primary" position="static" style={{ height: '64px' }}>
         <Toolbar style={toolbarStyle}>
           <Typography color="inherit">TODOS WITH HOOKS</Typography>

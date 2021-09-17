@@ -5,8 +5,12 @@ import Todo from './Todo';
 import { Divider, Paper, List } from '@material-ui/core';
 
 function TodoList({ todos, editTodo, removeTodo, toggleTodo }) {
+  const listItemStyle = {
+    background: 'rgba(255, 255, 255, 0.5)',
+  };
+
   return (
-    <Paper>
+    <Paper style={listItemStyle}>
       <List>
         {todos.map((todo, i) => (
           <React.Fragment key={todo.id}>

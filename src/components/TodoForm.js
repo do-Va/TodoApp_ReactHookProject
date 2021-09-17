@@ -13,8 +13,14 @@ function TodoForm({ addTodo }) {
     reset();
   };
 
+  const paperStyle = {
+    margin: '1rem 0',
+    padding: '0 1rem',
+    background: 'rgba(255, 255, 255, 0.5)',
+  };
+
   return (
-    <Paper style={{ margin: '1rem 0', padding: '0 1rem' }}>
+    <Paper style={paperStyle}>
       <form onSubmit={handleSubmit}>
         <TextField
           value={value}
