@@ -1,22 +1,16 @@
 import React from 'react';
+import Todo from './Todo';
 
-import {
-  Divider,
-  Paper,
-  List,
-  ListItem,
-  ListItemText,
-} from '@material-ui/core';
+/* Material-ui */
+import { Divider, Paper, List } from '@material-ui/core';
 
 function TodoList(props) {
   return (
     <Paper>
       <List>
         {props.todos.map(todo => (
-          <React.Fragment>
-            <ListItem>
-              <ListItemText>{todo.task}</ListItemText>
-            </ListItem>
+          <React.Fragment key={todo.id}>
+            <Todo {...todo} />
             <Divider />
           </React.Fragment>
         ))}
